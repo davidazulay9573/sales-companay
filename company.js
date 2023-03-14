@@ -1,4 +1,3 @@
-
 import Product from "./product.js";
 import Client from "./client.js";
 import Employee from "./employee.js";
@@ -97,18 +96,17 @@ export default class Company {
   }
 
   addCustomer(nameOfCustomer, typeOfCustomer, phoneNumber, IdOfCustomer) {
-     
     let client = new Client(
       nameOfCustomer,
       typeOfCustomer,
       phoneNumber,
       IdOfCustomer
     );
-     this.customersFromeLocalStorge =
-       this.customersFromeLocalStorge.filter(check);
-     function check(CR) {
-       return CR.name != "example";
-     }
+    this.customersFromeLocalStorge =
+      this.customersFromeLocalStorge.filter(check);
+    function check(CR) {
+      return CR.name != "example";
+    }
     this.keepInLocalStorge(this.customersFromeLocalStorge, client, "customers");
   }
 
@@ -133,7 +131,7 @@ export default class Company {
         }
       });
     });
-   
+
     this.DailyReportFromeLocalStorge.forEach((dayRPT, index) => {
       if (dayRPT.name == "example") {
         this.DailyReportFromeLocalStorge.splice(index, 1);
@@ -142,7 +140,6 @@ export default class Company {
 
     if (this.DailyReportFromeLocalStorge.length >= 1) {
       let checkDate = this.DailyReportFromeLocalStorge.every((workDay) => {
-       
         return workDay.date.day != dateOBJ.day;
       });
 
@@ -190,7 +187,7 @@ export default class Company {
     this.#totalProfit += totalRevenues - this.#totalSalary;
   }
 
-  printDataSummaryToHTML(div,div2) {
+  printDataSummaryToHTML(div, div2) {
     div.innerHTML = `<br><h4>
                     total employees: ${
                       this.employeeFromeLocalStorge.length
@@ -203,7 +200,7 @@ export default class Company {
     let buttonDaysList = document.createElement("button");
     buttonDaysList.innerText = " Show days list";
     buttonDaysList.addEventListener("click", () => {
-      div2.innerHTML='';
+      div2.innerHTML = "";
       let ul = document.createElement("ul");
       this.DailyReportFromeLocalStorge.forEach((workDay) => {
         let li = document.createElement("div");
@@ -243,4 +240,3 @@ export default class Company {
     });
   }
 }
-

@@ -66,9 +66,7 @@ function login(){
  
   company.login(userNameOFlogin, passwordOFlogin,DOM1);
   
-
 }
-
 let sendRegister = document.getElementById("sendRegister");
 sendRegister.addEventListener("click", register);
 let sendLogin = document.getElementById("sendLogin");
@@ -205,3 +203,5 @@ function callToDom1(employee){
   DOM1(employee);
 });
 }
+// localStorage.removeItem('daily')
+// localStorage.removeItem('employees')

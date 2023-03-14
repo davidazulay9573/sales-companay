@@ -5,7 +5,6 @@ export default class Product{
           this.type = type;
           this.dataNumbers = price;
           this.id = id;
-          
           this.rating =0;
     }
 

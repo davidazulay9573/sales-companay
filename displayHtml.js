@@ -1,4 +1,3 @@
-
 export default class DisplayTOHTML {
   constructor() {
     this.employeeFromeLocalStorge = JSON.parse(
@@ -83,19 +82,15 @@ export default class DisplayTOHTML {
     divOfcontent.innerHTML = `<div ><h3> User name:  ${
       employee.userName
     }<br><br>
-                                   Amount sales: ${totalSales} <br><br>
-                                   Rating: ${employee.rating} <br><br>
-                                   Total profit:  ${totalSalary} <br><br>
-                                   Total working days: ${
-                                     employee.businessDays.length
-                                   }<br><br>
-                                   Total working hours:${totalHours} <br><br>
-                                   Hourly profit: ${
-                                     totalSalary / totalHours
-                                   } <br><br>
-                                   Daily profit: ${
-                                     totalSalary / employee.businessDays.length
-                                   }</h3><br> <br><br> `;
+     Amount sales: ${totalSales} <br><br>
+     Rating: ${employee.rating} <br><br>
+     Total profit:  ${totalSalary} <br><br>
+     Total working days: ${employee.businessDays.length}<br><br>
+     Total working hours:${totalHours} <br><br>
+     Hourly profit: ${totalSalary / totalHours} <br><br>
+     Daily profit: ${
+       totalSalary / employee.businessDays.length
+     }</h3><br> <br><br> `;
 
     let buttonDaysList = document.createElement("button");
     buttonDaysList.innerText = " Show days list";
@@ -115,15 +110,19 @@ export default class DisplayTOHTML {
     div.appendChild(divOfcontent);
   }
   reportDaily(div, workDay) {
-    div.innerHTML += `<h4>Date: ${workDay.date.day}-${workDay.date.month}-${workDay.date.year};<br>
+    div.innerHTML += `<h4>Date: ${workDay.date.day}-${workDay.date.month + 1}-${
+      workDay.date.year
+    };<br>
                               Salary: ${workDay.salary};<br>
                               Work hours: ${workDay.workhours};<br>
-                              Amount sales: ${workDay.amountSales}.</h4><br></br></div>`;
+                              Amount sales: ${
+                                workDay.amountSales
+                              }.</h4><br></br></div>`;
   }
 
   displayGraph(array) {
     let date = array.map(
-      (workDay) => workDay.date.day + "/" + workDay.date.month
+      (workDay) => workDay.date.day + "/" + (workDay.date.month + 1)
     );
     let arrayOfSalary = array.map((workDay) => workDay.salary);
     let arrayOfSales = array.map((workDay) => workDay.amountSales);
@@ -157,5 +156,3 @@ export default class DisplayTOHTML {
     });
   }
 }
-
-

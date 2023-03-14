@@ -3,12 +3,11 @@ import DisplayTOHTML from "./displayHtml.js";
 const company = new Company();
 const displayHtml = new DisplayTOHTML();
 
-
 if (company.productsFromeLocalStorge == null) {
-  localStorage.setItem("products", JSON.stringify([{'name':'example'}]));
+  localStorage.setItem("products", JSON.stringify([{ name: "example" }]));
 }
 if (company.customersFromeLocalStorge == null) {
-  localStorage.setItem("customers", JSON.stringify([{ 'name': "example" }]));
+  localStorage.setItem("customers", JSON.stringify([{ name: "example" }]));
 }
 
 if (company.DailyReportFromeLocalStorge == null) {
@@ -33,8 +32,8 @@ if (company.employeeFromeLocalStorge == null) {
       },
     ])
   );
-} 
- 
+}
+
 const containerA1 = document.getElementById("containerA1");
 const containerA2 = document.getElementById("containerA2");
 const containerB = document.getElementById("containerB");
@@ -46,9 +45,19 @@ addProduct.addEventListener("click", () => {
   let priceOfProduct = document.getElementById("priceOfProduct").value;
   let IdOfProudt = document.getElementById("IdOfProudt").value;
 
-  if (nameOfProduct != "" && typeOfProduct != "" && priceOfProduct != "" && IdOfProudt != "") {
-    company.addProduct(nameOfProduct, typeOfProduct, priceOfProduct,IdOfProudt);
-     location.reload();
+  if (
+    nameOfProduct != "" &&
+    typeOfProduct != "" &&
+    priceOfProduct != "" &&
+    IdOfProudt != ""
+  ) {
+    company.addProduct(
+      nameOfProduct,
+      typeOfProduct,
+      priceOfProduct,
+      IdOfProudt
+    );
+    location.reload();
   }
 });
 
@@ -59,56 +68,69 @@ addCustomers.addEventListener("click", () => {
   let phoneNumber = document.getElementById("phoneNumber ").value;
   let IdOfCustomers = document.getElementById("IdOfCustomer").value;
 
-  if ( nameOfCustomers != "" && typeOfCustomers != "" && phoneNumber  != "" && IdOfCustomers != "" ) {
-    company.addCustomer(nameOfCustomers, typeOfCustomers, phoneNumber,IdOfCustomers);
-     location.reload();
+  if (
+    nameOfCustomers != "" &&
+    typeOfCustomers != "" &&
+    phoneNumber != "" &&
+    IdOfCustomers != ""
+  ) {
+    company.addCustomer(
+      nameOfCustomers,
+      typeOfCustomers,
+      phoneNumber,
+      IdOfCustomers
+    );
+    location.reload();
   }
 });
 
 let showPordact = document.getElementById("showPordact");
 showPordact.addEventListener("click", () => {
-  containerA2.innerHTML ='';
-  displayHtml.products(containerA2)
-  
+  containerA2.innerHTML = "";
+  displayHtml.products(containerA2);
 });
-
 let showCusromer = document.getElementById("showCustomer");
 showCusromer.addEventListener("click", () => {
-   containerA2.innerHTML = "";
-  displayHtml.customers(containerA2)
+  containerA2.innerHTML = "";
+  displayHtml.customers(containerA2);
 });
 
 let showGraph = document.getElementById("showGraph");
-showGraph.addEventListener('click',( )=> {
-   containerA1.innerHTML = `
-                        <div>  <canvas id="myChart" style="width:40%" "></canvas><br>
-                        <p style='color:red''>Salary</p>
-                        <p style='color:blue'>Amount hours</p>  
-                        <p style='color:green'>AmonutSalse</p></div>
-                          
-`;
-   displayHtml.displayGraph(company.DailyReportFromeLocalStorge);
+showGraph.addEventListener("click", () => {
+  containerA1.innerHTML = `<div>  <canvas id="myChart" style="width:40%" "></canvas><br>
+                            <p style='color:red''>Salary</p>
+                            <p style='color:blue'>Amount hours</p>  
+                            <p style='color:green'>AmonutSalse</p></div>`;
+  displayHtml.displayGraph(company.DailyReportFromeLocalStorge);
 });
 
-let inputToDate = document.getElementById("inputToDate"); ; 
+let inputToDate = document.getElementById("inputToDate");
 let searchByDate = document.getElementById("searchByDate");
 searchByDate.addEventListener("click", () => {
- if(inputToDate.value != '') {
-  containerA2.innerHTML ='';
-   let yearFromeInput = Number(inputToDate.value[0] + inputToDate.value[1] + inputToDate.value[2] + inputToDate.value[3]); 
-   let monthFromeInput = Number(inputToDate.value[5] + inputToDate.value[6]);
-   let dayFromeInput = Number(inputToDate.value[8] + inputToDate.value[9]);
-   company.findeDataByDate(containerA2, yearFromeInput,monthFromeInput,dayFromeInput);
- }
-  
+  if (inputToDate.value != "") {
+    containerA2.innerHTML = "";
+    let yearFromeInput = Number(
+      inputToDate.value[0] +
+        inputToDate.value[1] +
+        inputToDate.value[2] +
+        inputToDate.value[3]
+    );
+    let monthFromeInput = Number(inputToDate.value[5] + inputToDate.value[6]);
+    let dayFromeInput = Number(inputToDate.value[8] + inputToDate.value[9]);
+    company.findeDataByDate(
+      containerA2,
+      yearFromeInput,
+      monthFromeInput,
+      dayFromeInput
+    );
+  }
 });
 
 let inputToName = document.getElementById("inputToName");
 let searchByName = document.getElementById("searchByName");
 searchByName.addEventListener("click", () => {
-   containerA2.innerHTML = "";
+  containerA2.innerHTML = "";
   company.findeDataByName(containerA2, inputToName.value);
-   
 });
 company.calculateAllData();
-company.printDataSummaryToHTML(containerB,containerA2);
+company.printDataSummaryToHTML(containerB, containerA2);
